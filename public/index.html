@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/visor.css">
+  <link rel="stylesheet" href="./css/flickity.min.css">
+  <link rel="stylesheet" href="./css/accordion.min.css">
+  <link rel="stylesheet" href="./css/animate.min.css">
+  <link rel="stylesheet" href="./css/reset.css">
+
+  <!--
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+-->
+
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="row mt-5 ">
+
+      <!-- definir elementos -->
+      <div class="col-sm-12  col-md-6    text-white">
+        <div class="card bg-base">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 mt-3 ">
+                <h4 class="font-weight-bold text-white d-inline-block">Calculadora de contenedores</h4>
+                <h4 class="float-right d-inline-block text-white"><i class="fas fa-calculator "></i></h4>
+              </div>
+              <div class="col-md-12 mt-3 text-center">
+                Ingrese los datos de su mercancia
+              </div>
+              <div class="col-md-12 mt-3">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Unidad de medida
+                  </div>
+                  <div class="col-sm-6">
+                    <select class="form-control" id="unidad-medida">
+                      <option value="0" selected="">Centimetros</option>
+                      <option value="1">Pulgadas</option>
+                      <option value="2">Pies</option>
+                      <option value="3">Milímetro</option>
+                      <option value="4">Metros</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Unidad de peso
+                  </div>
+                  <div class="col-sm-6">
+                    <select class="form-control" id="unidad-peso">
+                      <option value="0" selected="">Kilogramos</option>
+                      <option value="1">Libras</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Tipo de embalaje
+                  </div>
+                  <div class="col-sm-6">
+                    <select class="form-control" id="tipo-embalaje">
+                      <option value="0">Cajas</option>
+                      <option value="1">Sacos</option>
+                      <option value="2">Barriles</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Color de la mercancia
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="jscolor form-control" readonly id="color-mercancia" value="">
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-md-12 mt-3">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Nombre de la mercancia
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="nombre-mercancia">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Largo
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" id="largo-mercancia">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Ancho o radio
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" id="ancho-radio-mercancia">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Alto
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" id="alto-mercancia">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Peso
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" id="peso-mercancia">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-1">
+                <div class="row">
+                  <div class="col-sm-6">
+                    Cantidad
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" class="form-control" id="cantidad-mercancia" min="1">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mt-3 pb-3">
+                <div class="row">
+                  <div class="col-sm-6 offset-sm-3">
+                    <button type="button" onclick="procesar.agregar_item_acordion()"
+                      class="btn btn-block btn-danger">Agregar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /definir elementos  -->
+
+      <!-- lista de elementos  -->
+      <div class="col-sm-12  col-md-6">
+
+        <div class="accordion-container" id="acordion-container">
+
+
+        </div>
+
+      </div>
+      <!-- /lista de elementos  -->
+
+      <!-- ajustes  -->
+      <div class="col-sm-12 mt-5">
+        <h4>Ajustes</h4>
+        <div class="card">
+          <div class="card-body">
+
+            <div class="row">
+
+              <!-- Tipo de container -->
+              <div class="col-sm-6 col-md-3 pb-3">
+                <h6 class="card-title">
+                  Tipo de contenedor
+                  <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top"
+                    title="
+                          <div class='text-left'>
+                            <p class='font-weight-bold'>Seleccione el tipo de contenedor a usar.</p>
+                          - Selección automática: el sistema de encarga de determinar el mejor contenedor para su mercancia. <br>
+                          - Selección manual: usted puede seleccionar los tipos de container a usar
+                          </div>">
+                    ?
+                  </span>
+                </h6>
+                <div class="custom-control custom-radio" onclick="$('#tipo_opt').hide()">
+                  <input class="custom-control-input" type="radio" name="container" id="cont0" value="0" checked>
+                  <label class="custom-control-label" for="cont0">Selección automática</label>
+                </div>
+                <div class="custom-control custom-radio" onclick="  $('#tipo_opt').show().slideDown ">
+                  <input class="custom-control-input" type="radio" name="container" id="cont1" value="1">
+                  <label class="custom-control-label" for="cont1">Selección manual</label>
+                </div>
+                <select name="containers_tipo" id="tipo_opt" class="form-control" multiple style="display: none">
+                  <option value="0">20 Pies</option>
+                  <option value="1">40 Pies</option>
+                </select>
+              </div>
+
+              <!-- Pallets -->
+              <div class="col-sm-6 col-md-3 pb-3">
+                <h6 class="card-title">
+                  Pallets
+                  <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top"
+                    title="
+                          <div class='text-left'>
+                            <p class='font-weight-bold'>Indique al sistema si su mercancia utiliza pallets.</p>
+                          - Sin pallets: Su mercancia sera tratada sin los pallets. <br>
+                          - Con pallets: Su mercancia sera tratada con los pallets (125x125 cm).
+                          </div>">
+                    ?
+                  </span>
+
+                </h6>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="pallets" id="pallet0" value="0" checked>
+                  <label class="custom-control-label" for="pallet0"> Sin pallets</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="pallets" id="pallet1" value="1">
+                  <label class="custom-control-label" for="pallet1"> Con pallets </label>
+                </div>
+              </div>
+
+              <!-- ¿Paquetes apilables? -->
+              <div class="col-sm-6 col-md-3 pb-3">
+                <h6 class="card-title">
+                  ¿Bultos apilables?
+                  <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top"
+                    title="
+                        <div class='text-left'>
+                          <p class='font-weight-bold'>Indique al sistema si su mercancia puede ser apilada.</p>
+                          - Se pueden apilar: Su mercancia puede ser apilada. <br>
+                          - No se pueden apilar: Su mercancia no puede ser apilada.
+                        </div>">
+                    ?
+                  </span>
+                </h6>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="apilables" id="apilable0" value="0" checked>
+                  <label class="custom-control-label" for="apilable0"> Se pueden apilar </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="apilables" id="apilable1" value="1">
+                  <label class="custom-control-label" for="apilable1"> No se pueden apilar </label>
+                </div>
+              </div>
+
+              <!-- ¿Permitir rotación de los paqutes -->
+              <div class="col-sm-6 col-md-3 pb-3">
+                <h6 class="card-title">
+                  ¿Permitir rotación de los paquetes?
+                  <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top"
+                    title="
+                        <div class='text-left'>
+                          <p class='font-weight-bold'>Indique al sistema el tipo de rotacion permitida para su mercancia.</p>
+                          - Horizontal: Su mercancia puede ser rotada horizontalmente. <br>
+                          - Vertical: Su mercancia puede ser rotada verticalmente.
+                        </div>">
+                    ?
+                  </span>
+                </h6>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="checkbox" name="rotacion" id="rotacion0" value="0" checked>
+                  <label class="custom-control-label" for="rotacion0"> Horizontal </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="checkbox" name="rotacion" id="rotacion1" value="0" checked>
+                  <label class="custom-control-label" for="rotacion1"> Vertical </label>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+      <!-- /ajustes  -->
+
+      <!-- boton procesar -->
+      <div class="col-sm-12 mt-5 d-flex">
+        <button class="btn mx-auto  btn-outline-danger " onclick="procesar.calcular()"
+          style="width: 200px">Calcular</button>
+      </div>
+      <!-- /boton procesar -->
+
+
+
+
+      <!-- resumen -->
+      <divv class="col-sm-12 mt-5">
+
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Resumen</h4>
+
+            <table class="table table-bordered">
+
+              <tbody>
+                <tr>
+                  <th>Cantidad de contenedor y tipo</th>
+                  <td id="Cantidad_cont_resumen"></td>
+                </tr>
+                <tr>
+                  <th>Cantidad total de bultos/items </th>
+                  <td id="cantitad_total_de_paquetesTabla"></td>
+                </tr>
+                <tr>
+                  <th>Peso de los bultos/items en KG total</th>
+                  <td id="pesoTotal"></td>
+                </tr>
+                <tr>
+                  <th>Volumen total de los bultos/items </th>
+                  <td id="volumen_paquetes"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-md-6">
+            <h4>Espacio <span class="text-color-base font-weight-bold">disponible</span> contenedor(es)</h4>
+
+            <div class="card bg-base">
+              <div class="card-body">
+                <div class="row text-white">
+                  <div class="col-sm-6">
+                    <p>
+                      <p class="font-weight-bold">Volumen del contenedor disponible:</p>
+                      <div id="Volumendelcontenedordisponible"></div>
+                    </p>
+                    <p>
+                      <p class="font-weight-bold">Peso disponible en el contenedor:</p>
+                      <div id="Pesodisponibleenelcontenedor"></div>
+                    </p>
+                  </div>
+                  <div class="col-sm-6">
+                    <p>
+                      <p class="font-weight-bold">Peso maximo permitido al cargar en el contenedor:</p>
+                      <div id="Pesomaximopermitidoalcargarenelcontenedor"></div>
+                    </p>
+                    <p>
+                      <p class="font-weight-bold">Volumen del contenedor disponible o vacio:</p>
+                      <div id="Volumendelcontenedordisponibleovacio"></div>
+                    </p>
+                    <p>
+                      <p class="font-weight-bold">Volumen del contenedor usable aproximado:</p>
+                      <div id="Volumendelcontenedorusableaproximado"></div>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+
+      </divv>
+
+      <!-- /resumen -->
+
+
+      <!-- Simulacion 3D -->
+      <div class="col-sm-12 mt-5" id="div-sim-3d">
+        <h4>
+          Simulacion 3D
+          <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top" title="
+                <div class='text-left'>
+                  <p class='font-weight-bold'>Vista previa sugerente del posible llenado del contenedor.</p>
+                </div>">
+            ?
+          </span>
+        </h4>
+        <div class="text-center">
+          <div id="webgl-container" style="height: 900px;">
+          </div>
+
+          <div id="toolBox">
+            <ul>
+              <li>
+                <div class="screenshot">
+                  <button type="button" class="btn btn-sm btn-block ">
+                    <img id="sshot" src="images/ss.png" width="27" height="22" title="Tomar foto">
+                  </button>
+                </div>
+              </li>
+              <li><br></li>
+              <li>
+                <div class="">
+                    <button type="button" class="btn btn-sm btn-block ">
+                      <svg style="width: 20px" title="Alejar" onclick="zoomModel( 5 )" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="search-plus " role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512" class="">
+                        <path fill="currentColor"
+                          d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"
+                          class=""></path>
+                      </svg>
+                    </button>
+                </div>
+              </li>
+              <li>
+                <div class="">
+                    <button type="button" class="btn btn-sm btn-block ">
+                      <svg style="width: 20px" title="Acercar" onclick="zoomModel( -5 )" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="search-minus" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="">
+                        <path fill="currentColor"
+                          d="M304 192v32c0 6.6-5.4 12-12 12H124c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"
+                          class=""></path>
+                      </svg>
+                    </button>
+              </li>
+              <li><br></li>
+
+
+              <li>
+                <div class="tbInput"><input type="radio" accesskey="w" name="type" checked id="typeWireFrame"
+                    onchange="toggleView()"></div>
+                <div class="tbInput"><img src="images/w.gif" width="16" height="16" title="Estructura"></div>
+              </li>
+
+              <li>
+                <div class="tbInput"> <input type="radio" accesskey="s" name="type" id="typeSolid"
+                    onchange="toggleView()"></div>
+                <div class="tbInput"><img src="images/s.png" width="16" height="16" title="Solido"></div>
+              </li>
+
+
+            </ul>
+          </div>
+
+
+          <p class="bg-light text-left">
+            <span class="badge bg-base rounded-circle"> ?</span>
+            Puede rotar la vista 3D haciendo click en el centro del contenedor y arrastrando el punto hacia los lados
+          </p>
+        </div>
+      </div>
+      <!-- /Simulacion 3D -->
+
+
+      <!-- items -->
+      <div class="col-sm-12 mt-5">
+        <h4>
+          Bultos / Items
+          <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top" title="
+                <div class='text-left'>
+                  <p class='font-weight-bold'>Lista de bultos/items totales.</p>
+                  Puede seleccionar uno de ellos para ocultar o mostrar los bultos/items en el visor 3D.
+                </div>">
+            ?
+          </span>
+        </h4>
+        <div class="main-carousel" id="items">
+
+        </div>
+
+
+        <p class="bg-light text-left mt-5">
+          <span class="badge bg-base rounded-circle"> ?</span>
+          Puede seleccionar uno de los bultos/items de arriba para ocultar o mostrar en el visor 3D.
+        </p>
+
+
+      </div>
+
+
+      <!-- contenedores -->
+      <div class="col-sm-12 mt-5">
+        <h4>
+          Contenedores
+          <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top" title="
+                <div class='text-left'>
+                  <p class='font-weight-bold'>Lista de contenedores totales usados por su mercancia.</p>
+                  Puede seleccionar uno de ellos para ocultar o mostrar el contenedor en el visor 3D.
+                </div>">
+            ?
+          </span>
+        </h4>
+        <div class="main-carousel" id="containers">
+
+        </div>
+
+
+        <p class="bg-light text-left mt-5">
+          <span class="badge bg-base rounded-circle"> ?</span>
+          Puede seleccionar un contenedor de arriba para ocultar o mostrarlo en el visor 3D.
+        </p>
+
+      </div>
+      <!-- /contenedores-->
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="js/accordion.min.js"></script>
+  <script src="js/flickity.pkgd.min.js"></script>
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/sweetalert2@8"></script>
+  <script src="js/jscolor.min.js"></script>
+  <script src="js/bundle.js"></script>
+
+  <!-- visor 3d -->
+  <script src="js/three.min.js"></script>
+  <script src="js/ThreeCSG.js"></script>
+  <script src="js/TrackballControls.js"></script>
+  <script src="js/OrbitControls.js"></script>
+
+  <script src="js/visor/data.js"></script>
+  <script src="js/visor/material.js"></script>
+  <script src="js/visor/menuBuilder.js"></script>
+  <script src="js/visor/webglBox.js"></script>
+  <script src="js/visor/webglHelper.js"></script>
+  <script src="js/visor/webglScene.js"></script>
+  <script src="js/visor/resultadosGenerales.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+
+
+
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+
+
+
+
+
+
+
+
+    var procesar = new app.procesar();
+    var conversor = new app.convertir();
+
+    procesar.randomcolor();
+
+    // viewer 
+    var boxIndex = -1;
+    var Boxes = null;
+    var itemStopIndex = 0;
+    var validadeJSON = true;
+
+
+    var FlickityItems = new Flickity('#items', { cellAlign: 'left', });
+
+    var FlickityContainers = new Flickity('#containers', { cellAlign: 'left', });
+
+  </script>
+</body>
+
+</html>

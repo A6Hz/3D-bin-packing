@@ -1,0 +1,25 @@
+{
+  "name": "3dbin4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node app.js",
+    "build": "webpack --config webpack.config.js",
+    "dev": "nodemon --watch src/ --exec npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
