@@ -68,27 +68,18 @@ export default class mercancia {
 
       if(objeto.tipo_embalaje == 0 || objeto.tipo_embalaje == 2){
         // validar dimensiones en todas las posiciones (contenedores)
-        if (
-          ajustesObj.containers[1].w <= objeto.largo_mercancia &&
-          ajustesObj.containers[1].h <= objeto.largo_mercancia &&
-          ajustesObj.containers[1].d <= objeto.largo_mercancia) {
+        if (ajustesObj.containers[1].d <= objeto.largo_mercancia) {
           error.largo_mercancia.error = true;
           error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
         }
       }
 
-      if (
-        ajustesObj.containers[1].w <= objeto.ancho_radio_mercancia &&
-        ajustesObj.containers[1].h <= objeto.ancho_radio_mercancia &&
-        ajustesObj.containers[1].d <= objeto.ancho_radio_mercancia) {
+      if (ajustesObj.containers[1].w <= objeto.ancho_radio_mercancia) {
         error.ancho_radio_mercancia.error = true;
         error.ancho_radio_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
       }
 
-      if (
-        ajustesObj.containers[1].w <= objeto.alto_mercancia &&
-        ajustesObj.containers[1].h <= objeto.alto_mercancia &&
-        ajustesObj.containers[1].d <= objeto.alto_mercancia) {
+      if (ajustesObj.containers[1].h <= objeto.alto_mercancia) {
         error.alto_mercancia.error = true;
         error.alto_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
       }
@@ -98,27 +89,18 @@ export default class mercancia {
 
       if(objeto.tipo_embalaje == 0 || objeto.tipo_embalaje == 2){
         // validar dimensiones en todas las posiciones (pallets)
-        if (
-          ajustesObj.pallets.ancho <= objeto.largo_mercancia &&
-          (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.largo_mercancia &&
-          ajustesObj.pallets.largo <= objeto.largo_mercancia) {
+        if (ajustesObj.pallets.largo <= objeto.largo_mercancia) {
           error.largo_mercancia.error = true;
           error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
         }
       }
 
-      if (
-        ajustesObj.pallets.ancho <= objeto.ancho_radio_mercancia &&
-        (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.ancho_radio_mercancia &&
-        ajustesObj.pallets.largo <= objeto.ancho_radio_mercancia) {
+      if (ajustesObj.pallets.ancho <= objeto.ancho_radio_mercancia) {
         error.ancho_radio_mercancia.error = true;
         error.ancho_radio_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
       }
 
-      if (
-        ajustesObj.pallets.ancho <= objeto.alto_mercancia &&
-        (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.alto_mercancia &&
-        ajustesObj.pallets.largo <= objeto.alto_mercancia) {
+      if ((ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.alto_mercancia) {
         error.alto_mercancia.error = true;
         error.alto_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
       }
@@ -605,25 +587,154 @@ export default class mercancia {
     let a = JSON.parse(new binpacking(itemsArray, ajustes).main(true));
     let p = JSON.parse(new binpacking(itemsArray, ajustes).main(false));
 
-    if (a.box.length < p.box.length) {
-      if (a.box.length != 0) {
-        InitNewProblem(a);
+
+
+    let arrayCont = [this.validar_conteiner(a), this.validar_conteiner(p)];
+    let min = arrayCont.indexOf(Math.min( ...arrayCont ));
+
+
+
+
+    let probA = 0;
+    let probP = 0;
+
+    if (this.validar_contenido(a) ) {
+      if(min == 0){
+        probA = 1;
+      }
+      else{
+        probA = 0.5;
       }
     }
-    else if (p.box.length != 0) {
-      InitNewProblem(p);
+    
+    if(this.validar_contenido(p)) {
+      if(min == 1){
+        probP = 1;
+      }
+      else{
+        probP = 0.5;
+      }      
     }
-    else{
+
+
+
+    console.log("probA", probA)
+    console.log("probP", probP)
+    
+    if( probA > probP ){
+      InitNewProblem(a);    
+    }
+    else if( probA < probP ){
+      InitNewProblem(p);    
+    }
+    else if( probA == 0 && probP == 0){
       Swal.fire({
         type: 'error',
         title: 'Error',
-        text: 'Ocurrió un error al procesar los datos',
+        text: 'Ocurrió un error al procesar los datos.',
       })
-      
     }
+    else{
+      alert("Error")
+    }
+
+    
+    
       
 
 
   }
+
+
+  validar_contenido(box){
+    let TotalReal = 0;
+    let totalEnElContenedor = 0;
+    
+    // determinar el total de mercancia que deberia tener el 
+    // contenedor 
+    this.items.map((v, k) => {
+      TotalReal += parseInt(v.cantidad_mercancia);
+    });
+
+
+    // recorrer el contenedor 
+    box.box.map((v, k) => {
+      totalEnElContenedor += v.items.length;
+    });
+
+    if(TotalReal == totalEnElContenedor){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
+validar_conteiner(box){
+  const val40 = 1;
+  const val20 = 0.5;
+  let total = 0;
+
+  box.box.map((v,k) =>{
+    if(/40 pies/.test(v.name)){
+      total += val40;
+    }
+    else if(/20 pies/.test(v.name)){
+      total += val20;
+    }
+  })
+
+  return total;
+}
+
+
+
+
+
+  debugvar(){
+
+  // rotacion 
+  var rotacion = document.getElementsByName("rotacion");
+  var rotacion_array = [];
+  for (var i = 0; i < rotacion.length; i++) {
+    if (rotacion[i].checked) {
+      rotacion_array.push(parseInt(rotacion[i].value));
+    }
+    else {
+      rotacion_array.push(1);
+    }
+  }
+
+  // container tipo 
+  var containers_tipo = document.getElementsByName("containers_tipo");
+  var containers_tipo_arr = [];
+  for (var i = 0; i < containers_tipo[0].options.length; i++) {
+    if (containers_tipo[0].options[i].selected) {
+      containers_tipo_arr.push(parseInt(containers_tipo[0].options[i].value));
+    }
+  }
+
+
+  let ajustes = {
+    "containers": parseInt($("[name='container']:checked").val()),
+    "containers_tipo": containers_tipo_arr,
+    "pallets": parseInt($("[name='pallets']:checked").val()),
+    "apilable": parseInt($("[name='apilables']:checked").val()),
+    "rotacion": rotacion_array,
+  }
+
+
+
+    let final = {
+      "ajustes": ajustes,
+      "items": this.items
+    }
+
+    console.log(final);
+    navigator.clipboard.writeText(JSON.stringify(this.items));
+  }
+
+
 
 }
