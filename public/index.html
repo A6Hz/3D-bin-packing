@@ -76,10 +76,10 @@
                     Tipo de embalaje
                   </div>
                   <div class="col-sm-6">
-                    <select class="form-control" id="tipo-embalaje">
+                    <select class="form-control" id="tipo-embalaje" onchange="desactivar_largo(this)" >
                       <option value="0">Cajas</option>
-                      <option value="1">Sacos</option>
-                      <option value="2">Barriles</option>
+                      <option value="1">Barriles</option>
+                      <option value="2">Sacos</option>
                     </select>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
                     Color de la mercancia
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="jscolor form-control" readonly id="color-mercancia" value="">
+                    <input type="text" class="jscolor form-control" readonly id="color-mercancia" value="" disabled >
 
                   </div>
                 </div>

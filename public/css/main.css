@@ -123,7 +123,7 @@
 #toolBox{
   width: 50px;
     position: absolute;
-    bottom: 0;
+    bottom: 55px;
     background: #e0e0e0;
     right: 0px;
     padding-top: 20px;
@@ -131,4 +131,11 @@
 
 .tbInput{
   display: inline-block;
+}
+
+
+#color-mercancia{
+  color: transparent !important;
+  user-select: none !important;
+  text-indent: -99em;
 }

@@ -31,11 +31,11 @@ module.exports = class convertir{
           break;
         }
         case 1:{
-          return "Sacos"
+          return "Barriles"
           break;
         }
         case 2:{
-          return "Barriles"
+          return "Sacos"
           break;
         }
       }

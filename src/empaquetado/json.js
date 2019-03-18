@@ -58,7 +58,7 @@ module.exports = class json {
                 peso_total_paquetes += bin[bi].items[i].weight;
 
                 // volumen total paquetes 
-                if (bin[bi].items[i].t == 0) {
+                if (bin[bi].items[i].t == 0 || bin[bi].items[i].t == 2 ) {
                     volumen_total_paquetes += bin[bi].items[i].width * bin[bi].items[i].height * bin[bi].items[i].depth;
                 }
                 // volumen cilindros 
@@ -198,7 +198,7 @@ module.exports = class json {
 
 
                     // volumen total paquetes 
-                    if (vpalitm.t == 0) {
+                    if (vpalitm.t == 0 || vpalitm.t == 2) {
                         volumen_total_paquetes += vpalitm.width * vpalitm.height * vpalitm.depth;
                     }
                     // volumen cilindros 

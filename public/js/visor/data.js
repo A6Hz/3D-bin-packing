@@ -58,7 +58,32 @@ function InitNewProblem(text) {
 
   FlickityItems = new Flickity('#items', {cellAlign: 'left',});
   FlickityContainers = new Flickity('#containers', {cellAlign: 'left',});
-  swal.close();
+  
+  //swal.close();
+
+
+  setTimeout(function () {
+    Swal.fire({
+      type: 'success',
+      title: 'Ok',
+      text: 'Proceso completado',
+      showConfirmButton: false,
+      timer: 2000,
+      onClose: function () {
+        setTimeout(function () {
+          var elmnt = document.getElementById("div-sim-3d");
+          elmnt.scrollIntoView(true);
+        }
+          , 1000);
+      },
+      
+    })
+  }, 1000);
+
+
+
+
+
 }
 
 function DrawNewProblem() {

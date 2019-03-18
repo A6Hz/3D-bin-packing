@@ -130,12 +130,12 @@ function CreateItem(j, item) {
       break;
     }
     case 1:{
-      iDiv4.className = 'saco-img';
+      iDiv4.className = 'barril-img';
       iDiv3.appendChild(iDiv4);
       break;
     }
     case 2:{
-      iDiv4.className = 'barril-img';
+      iDiv4.className = 'saco-img';
       iDiv3.appendChild(iDiv4);
       break;
     }
@@ -227,4 +227,17 @@ function overItem(index, InOut, color) {
         }
         render();
     }
+}
+
+
+
+
+function desactivar_largo(val){
+  if($(val).val() == 1){
+    $("#largo-mercancia").val(null);
+    $("#largo-mercancia").attr("disabled", true);
+  }
+  else{
+    $("#largo-mercancia").removeAttr("disabled");
+  }
 }

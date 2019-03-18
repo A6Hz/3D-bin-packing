@@ -16,14 +16,28 @@ export default class mercancia {
 
 
   obtner_valores() {
+    let valor = 0;
+    let ancho = 0;
+
+    ancho = parseFloat($("#ancho-radio-mercancia").val())
+    
+    // si el tipo de embalaje es barril, copiar el ancho-radio para el largo 
+    if(parseInt($("#tipo-embalaje").val()) == 1){
+      valor = ancho;
+    }
+    else{
+      valor = parseFloat($("#largo-mercancia").val());
+    }
+
+
     return {
       unidad_medida: parseInt($("#unidad-medida").val()),
       unidad_peso: parseInt($("#unidad-peso").val()),
       tipo_embalaje: parseInt($("#tipo-embalaje").val()),
       color_mercancia: $("#color-mercancia").val(),
       nombre_mercancia: $("#nombre-mercancia").val(),
-      largo_mercancia: parseFloat($("#largo-mercancia").val()),
-      ancho_radio_mercancia: parseFloat($("#ancho-radio-mercancia").val()),
+      largo_mercancia: valor,
+      ancho_radio_mercancia: ancho,
       alto_mercancia: parseFloat($("#alto-mercancia").val()),
       peso_mercancia: parseFloat($("#peso-mercancia").val()),
       cantidad_mercancia: parseInt($("#cantidad-mercancia").val())
@@ -51,26 +65,29 @@ export default class mercancia {
 
 
     if (parseInt($("[name='pallets']:checked").val()) == 0) {
-      // validar dimensiones en todas las posiciones (contenedores)
-      if (
-        ajustesObj.containers[1].w <= objeto.largo_mercancia ||
-        ajustesObj.containers[1].h <= objeto.largo_mercancia ||
-        ajustesObj.containers[1].d <= objeto.largo_mercancia) {
-        error.largo_mercancia.error = true;
-        error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
+
+      if(objeto.tipo_embalaje == 0 || objeto.tipo_embalaje == 2){
+        // validar dimensiones en todas las posiciones (contenedores)
+        if (
+          ajustesObj.containers[1].w <= objeto.largo_mercancia &&
+          ajustesObj.containers[1].h <= objeto.largo_mercancia &&
+          ajustesObj.containers[1].d <= objeto.largo_mercancia) {
+          error.largo_mercancia.error = true;
+          error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
+        }
       }
 
       if (
-        ajustesObj.containers[1].w <= objeto.ancho_radio_mercancia ||
-        ajustesObj.containers[1].h <= objeto.ancho_radio_mercancia ||
+        ajustesObj.containers[1].w <= objeto.ancho_radio_mercancia &&
+        ajustesObj.containers[1].h <= objeto.ancho_radio_mercancia &&
         ajustesObj.containers[1].d <= objeto.ancho_radio_mercancia) {
         error.ancho_radio_mercancia.error = true;
         error.ancho_radio_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
       }
 
       if (
-        ajustesObj.containers[1].w <= objeto.alto_mercancia ||
-        ajustesObj.containers[1].h <= objeto.alto_mercancia ||
+        ajustesObj.containers[1].w <= objeto.alto_mercancia &&
+        ajustesObj.containers[1].h <= objeto.alto_mercancia &&
         ajustesObj.containers[1].d <= objeto.alto_mercancia) {
         error.alto_mercancia.error = true;
         error.alto_mercancia.detalle.push(`El valor excede los limites permitidos del contenedor.`);
@@ -78,26 +95,29 @@ export default class mercancia {
     }
 
     else if (parseInt($("[name='pallets']:checked").val()) == 1) {
-      // validar dimensiones en todas las posiciones (pallets)
-      if (
-        ajustesObj.pallets.ancho <= objeto.largo_mercancia ||
-        ajustesObj.containers[1].h <= objeto.largo_mercancia ||
-        ajustesObj.pallets.largo <= objeto.largo_mercancia) {
-        error.largo_mercancia.error = true;
-        error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
+
+      if(objeto.tipo_embalaje == 0 || objeto.tipo_embalaje == 2){
+        // validar dimensiones en todas las posiciones (pallets)
+        if (
+          ajustesObj.pallets.ancho <= objeto.largo_mercancia &&
+          (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.largo_mercancia &&
+          ajustesObj.pallets.largo <= objeto.largo_mercancia) {
+          error.largo_mercancia.error = true;
+          error.largo_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
+        }
       }
 
       if (
-        ajustesObj.pallets.ancho <= objeto.ancho_radio_mercancia ||
-        ajustesObj.containers[1].h <= objeto.ancho_radio_mercancia ||
+        ajustesObj.pallets.ancho <= objeto.ancho_radio_mercancia &&
+        (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.ancho_radio_mercancia &&
         ajustesObj.pallets.largo <= objeto.ancho_radio_mercancia) {
         error.ancho_radio_mercancia.error = true;
         error.ancho_radio_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
       }
 
       if (
-        ajustesObj.pallets.ancho <= objeto.alto_mercancia ||
-        ajustesObj.containers[1].h <= objeto.alto_mercancia ||
+        ajustesObj.pallets.ancho <= objeto.alto_mercancia &&
+        (ajustesObj.containers[1].h - ajustesObj.pallets.alto) <= objeto.alto_mercancia &&
         ajustesObj.pallets.largo <= objeto.alto_mercancia) {
         error.alto_mercancia.error = true;
         error.alto_mercancia.detalle.push(`El valor excede los limites permitidos del pallet.`);
@@ -346,6 +366,16 @@ export default class mercancia {
 
       this.randomcolor();
 
+      Swal.fire({
+        type: 'success',
+        title: 'Ok',
+        text: 'Item / bulto agregado',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      })
+
     }
 
   }
@@ -369,8 +399,8 @@ export default class mercancia {
               <li><span class="font-weight-bold">Unidad de medida:</span> ${this.convertir.unidad_medida(objeto.unidad_medida)}</li>
               <li><span class="font-weight-bold">Unidad de peso:</span> ${this.convertir.unidad_peso(objeto.unidad_peso)}</li>
               <li><span class="font-weight-bold">Tipo de embalaje:</span> ${this.convertir.tipo_embalaje(objeto.tipo_embalaje)}</li>
-              <li><span class="font-weight-bold">Largo:</span> ${objeto.largo_mercancia}</li>
-              <li><span class="font-weight-bold">Ancho:</span> ${objeto.ancho_radio_mercancia}</li>
+              <li><span class="font-weight-bold">Largo:</span> ${(objeto.tipo_embalaje != 1) ? objeto.largo_mercancia : "N/A" }</li>
+              <li><span class="font-weight-bold">Ancho o radio:</span> ${objeto.ancho_radio_mercancia}</li>
               <li><span class="font-weight-bold">Alto:</span>  ${objeto.alto_mercancia}</li>
               <li><span class="font-weight-bold">Peso:</span> ${objeto.peso_mercancia}</li>
               <li><span class="font-weight-bold">Cantidad:</span> ${objeto.cantidad_mercancia}</li>
@@ -510,13 +540,7 @@ export default class mercancia {
       showConfirmButton: false,
       allowEscapeKey: false,
       allowOutsideClick: false,
-      onClose: function () {
-        setTimeout(function () {
-          var elmnt = document.getElementById("div-sim-3d");
-          elmnt.scrollIntoView(true);
-        }
-          , 1000);
-      },
+     
 
     });
 
@@ -589,6 +613,15 @@ export default class mercancia {
     else if (p.box.length != 0) {
       InitNewProblem(p);
     }
+    else{
+      Swal.fire({
+        type: 'error',
+        title: 'Error',
+        text: 'Ocurrió un error al procesar los datos',
+      })
+      
+    }
+      
 
 
   }

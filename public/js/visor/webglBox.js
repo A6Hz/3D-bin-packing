@@ -77,7 +77,7 @@ function drawPalletSolid(item, i, m) {
 
 
 function drawItemSolid(item, i, m) {
-    if (item.t == 0) {
+    if (item.t == 0 || item.t == 2) {
         var geometry = new THREE.BoxGeometry(item.w, item.h, item.d);
         var box1 = new THREE.Mesh(geometry, m);
         box1.name = "itemBox" + i;
@@ -102,7 +102,7 @@ function drawItemSolid(item, i, m) {
 }
 
 function drawItemSolid_pallets(item, i, m) {
-    if (item.t == 0) {
+    if (item.t == 0 || item.t == 2 ) {
         var geometry = new THREE.BoxGeometry(item.w, item.h, item.d);
         var box1 = new THREE.Mesh(geometry, m);
         box1.name = "itemBox" + i;
@@ -182,7 +182,7 @@ function drawPalletWireFrame(item, i, m) {
 
 function drawItemWireframe_pallets(item, i, m) {
     // items igual a paralelepipedos 
-    if (item.t == 0) {
+    if (item.t == 0 || item.t == 2) {
         var geometry = new THREE.BoxGeometry(item.w, item.h, item.d);
         var box1 = new THREE.Mesh(geometry, m);
         box1.name = "itemBox" + i;
@@ -216,7 +216,7 @@ function drawItemWireframe_pallets(item, i, m) {
 
 function drawItemWireframe(item, i, m) {
     // items igual a paralelepipedos 
-    if (item.t == 0) {
+    if (item.t == 0 || item.t == 2) {
         var geometry = new THREE.BoxGeometry(item.w, item.h, item.d);
         var box1 = new THREE.Mesh(geometry, m);
         box1.name = "itemBox" + i;

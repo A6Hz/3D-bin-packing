@@ -51,7 +51,7 @@ module.exports = class packing {
     let peso = 0;
 
     this.itemsPacker.forEach((value, index) => {
-      if (value.t == 0) {
+      if (value.t == 0 || value.t == 2) {
         volumen += (value.width * value.height * value.depth);
         peso += (value.weight);
       }
@@ -122,7 +122,7 @@ module.exports = class packing {
       this.items.forEach((value, index) => {
 
         // paralelepidos 
-        if (value.t == 0) {
+        if (value.t == 0 || value.t == 2) {
           for (let a = 0; a < this.items[index].q; a++) {
             let item = new this.Item(
               this.items[index].name + " " + (a + 1),
@@ -192,7 +192,7 @@ module.exports = class packing {
       this.items.forEach((value, index) => {
 
         // paralelepidos 
-        if (value.t == 0) {
+        if (value.t == 0 || value.t == 2) {
           for (let a = 0; a < this.items[index].q; a++) {
             let item = new this.Item(
               this.items[index].name /*+ " " + (a + 1)*/,
