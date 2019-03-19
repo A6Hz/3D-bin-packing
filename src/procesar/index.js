@@ -299,7 +299,7 @@ export default class mercancia {
       o.largo_mercancia = this.convertir.pies_a_cm(o.largo_mercancia);
 
       // indicar la actual unidad de medida es centimetros 
-      o.unidad_medida = 2
+      o.unidad_medida = 0
     }
 
     // milimetros a centimetros
@@ -311,7 +311,7 @@ export default class mercancia {
       o.largo_mercancia = this.convertir.milimetros_a_cm(o.largo_mercancia);
 
       // indicar la actual unidad de medida es centimetros 
-      o.unidad_medida = 3
+      o.unidad_medida = 0
     }
 
     // metros a centimetros
@@ -323,7 +323,7 @@ export default class mercancia {
       o.largo_mercancia = this.convertir.metros_a_cm(o.largo_mercancia);
 
       // indicar la actual unidad de medida es centimetros 
-      o.unidad_medida = 4
+      o.unidad_medida = 0
     }
 
 
@@ -603,7 +603,7 @@ export default class mercancia {
         probA = 1;
       }
       else{
-        probA = 0.5;
+        probA += 0.5;
       }
     }
     
@@ -612,7 +612,7 @@ export default class mercancia {
         probP = 1;
       }
       else{
-        probP = 0.5;
+        probP += 0.5;
       }      
     }
 
@@ -624,18 +624,22 @@ export default class mercancia {
     if( probA > probP ){
       InitNewProblem(a);    
     }
-    else if( probA < probP ){
+    else if( probA < probP){
       InitNewProblem(p);    
     }
     else if( probA == 0 && probP == 0){
+      Swal.fire({
+        type: 'question',
+        title: 'probabilidad 0 ',
+        text: 'Resultados dieron una probabilidad 0.',
+      })
+    }
+    else{
       Swal.fire({
         type: 'error',
         title: 'Error',
         text: 'Ocurrió un error al procesar los datos.',
       })
-    }
-    else{
-      alert("Error")
     }
 
     
@@ -659,7 +663,24 @@ export default class mercancia {
 
     // recorrer el contenedor 
     box.box.map((v, k) => {
-      totalEnElContenedor += v.items.length;
+
+      try {
+        if(v.items[0].items.length > 0){
+
+          v.items.map((v2,k2) => {
+            totalEnElContenedor += v2.items.length;
+          });
+
+        }
+      }
+      catch(e) {
+        totalEnElContenedor += v.items.length;
+      }
+
+      
+      
+
+
     });
 
     if(TotalReal == totalEnElContenedor){
@@ -734,6 +755,45 @@ validar_conteiner(box){
     console.log(final);
     navigator.clipboard.writeText(JSON.stringify(this.items));
   }
+
+
+
+
+
+
+
+
+
+
+
+  test(){
+    let valor = [
+      ["1 plts", 1200, 1000, 1100, 10, 1, 3],
+      ["2 plts", 1200, 1000, 1100, 10, 2, 3],
+      ["4 plts", 1200, 1000, 1250, 10, 4, 3],
+      ["9 plts", 1200, 1000, 1250, 10, 9, 3],
+      ["16 plts", 400, 300, 300, 10, 16, 3],
+    ]
+
+    valor.map((v, k) => {
+      $("#unidad-medida").val(v[6]);
+      
+      $("#nombre-mercancia").val(v[0]);
+      $("#largo-mercancia").val(v[1]);
+      $("#ancho-radio-mercancia").val(v[2]);
+      $("#alto-mercancia").val(v[3]);
+      $("#peso-mercancia").val(v[4]);
+      $("#cantidad-mercancia").val(v[5]);
+
+      this.agregar_item_acordion();
+
+    })
+
+
+
+  }
+
+
 
 
 
