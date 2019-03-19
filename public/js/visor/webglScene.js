@@ -9,7 +9,7 @@ var renderer = window.WebGLRenderingContext ?
 var container, camera, light, light1, controls = null, box, axis, planes;
 var offset = 0;
 
-var zooDm = 50;
+var zooDm = 80;
 
 function initScene() {    
     container = document.getElementById("webgl-container"); 
