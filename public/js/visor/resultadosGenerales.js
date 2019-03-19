@@ -6,6 +6,7 @@ function resultadosGenerales(){
   Cantidad_total_de_bultos();
   Peso_total_de_bultos();
   volumen_paquetes();
+  cantidadepalletsGlobales();
 
   Volumendelcontenedordisponible();
   Pesodisponibleenelcontenedor();
@@ -87,13 +88,46 @@ function volumen_paquetes(){
 
 }
 
+function cantidadepalletsGlobales(){
+  var cantidadPallets = 0;
+  var resultado = "";
+
+  for(var i = 0; i <Boxes.box.length; i++){
+
+    for(var a = 0; a <Boxes.box[i].items.length; a++ ){
+
+      try{
+        if(Boxes.box[i].items[a].items.length){
+          cantidadPallets += 1;
+        }
+      }
+      catch(w){
+        null
+      }
+    }
+
+  }
+  
+
+  if(cantidadPallets == 0){
+    resultado = "N/A";
+  }
+  else{
+    resultado = cantidadPallets;
+  }
+
+  $("#cantidadPalletsGlobales").html(resultado);
+}
+
+
+
 
 function Volumendelcontenedordisponible(){
 
   var detalle = "";
   for(var i = 0; i <Boxes.box.length; i++){
     var volumenContainer = ((Boxes.box[i].d * Boxes.box[i].h *  Boxes.box[i].w) - Boxes.box[i].volumen_paquetes );
-    detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> ${volumenContainer} cm<sup>3</sup></p>`
+    detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> ${conversor.cm3_a_m3(volumenContainer)} m<sup>3</sup></p>`
   }
 
 

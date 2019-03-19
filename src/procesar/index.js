@@ -665,15 +665,17 @@ export default class mercancia {
     box.box.map((v, k) => {
 
       try {
+        // comprobar si el item tiene items dentro. 
+        // si no genera un exception es un pallet 
         if(v.items[0].items.length > 0){
-
           v.items.map((v2,k2) => {
             totalEnElContenedor += v2.items.length;
           });
-
         }
       }
       catch(e) {
+
+        // empaquetado sin pallets 
         totalEnElContenedor += v.items.length;
       }
 
