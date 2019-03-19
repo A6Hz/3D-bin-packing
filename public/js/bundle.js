@@ -106,7 +106,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = {\n  pallets: {\n    ancho: 125,\n    largo: 125,\n    alto: 14,\n    maximopeso: 1200\n  },\n\n  containers: [{ \"name\": \"20 pies\", \"w\": 236, \"h\": 240, \"d\": 590, \"mw\": 26000 }, { \"name\": \"40 pies\", \"w\": 236, \"h\": 246, \"d\": 1200, \"mw\": 26000 }]\n};\n\n//# sourceURL=webpack://app/./src/ajustes.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = {\n  pallets: {\n    ancho: 110,\n    largo: 125,\n    alto: 14,\n    maximopeso: 1200\n  },\n\n  containers: [{ \"name\": \"20 pies\", \"w\": 236, \"h\": 240, \"d\": 590, \"mw\": 26000 }, { \"name\": \"40 pies\", \"w\": 236, \"h\": 246, \"d\": 1200, \"mw\": 26000 }]\n};\n\n//# sourceURL=webpack://app/./src/ajustes.js?");
 
 /***/ }),
 
