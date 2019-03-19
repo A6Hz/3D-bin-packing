@@ -1,6 +1,6 @@
 export default {
   pallets: {
-    ancho: 110,
+    ancho: 101,
     largo: 125,
     alto: 14,
     maximopeso: 1200
