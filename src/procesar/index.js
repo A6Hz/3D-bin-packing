@@ -401,6 +401,10 @@ export default class mercancia {
     $("#acordion-container").append(acordion);
     new Accordion('.accordion-container');
 
+
+    var elmnt = document.getElementById("acordion-container");
+    elmnt.scrollIntoView(true);
+
   }
 
 
@@ -434,6 +438,17 @@ export default class mercancia {
 
 
   editar(id) {
+
+    Swal.fire({
+      type: 'info',
+      title: 'Editar datos',
+      text: 'Los valores para su edición fueron agregados en el panel lateral.',
+      
+    })
+
+
+
+
 
     this.items.map((v, k) => {
       if (v.id == id) {

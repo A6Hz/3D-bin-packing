@@ -123,10 +123,22 @@ function cantidadepalletsGlobales(){
 
 
 function Volumendelcontenedordisponible(){
-
+  var volumenContainer = 0;
   var detalle = "";
   for(var i = 0; i <Boxes.box.length; i++){
-    var volumenContainer = ((Boxes.box[i].d * Boxes.box[i].h *  Boxes.box[i].w) - Boxes.box[i].volumen_paquetes );
+
+    if(/20 pies/.test(Boxes.box[i].name)){ 
+      // 30 
+      volumenContainer = (30000000 - Boxes.box[i].volumen_paquetes );
+    }
+    if(/40 pies/.test(Boxes.box[i].name)){
+
+      // 65 
+      volumenContainer = ( 65000000 - Boxes.box[i].volumen_paquetes );
+    }
+
+    
+
     detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> ${conversor.cm3_a_m3(volumenContainer)} m<sup>3</sup></p>`
   }
 
