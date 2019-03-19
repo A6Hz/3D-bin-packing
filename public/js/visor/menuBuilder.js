@@ -73,7 +73,7 @@ function CreateBoxMenu(index, box) {
 
   var iDiv = document.createElement('div');
   iDiv.id = index;
-  iDiv.className += " card text-center";
+  iDiv.className = ( index == boxIndex) ? "card text-center bg-secondary text-white" : " card text-center";
   iDiv.style = `width: 200px; height: 200px; margin: 5px;`;
   
 
@@ -114,7 +114,7 @@ function CreateItem(j, item) {
   iDiv.className = 'carousel-cell';
   
   var iDiv2 = document.createElement('div');
-  iDiv2.className = 'card';
+  iDiv2.className = 'card card-hover-item';
   iDiv2.style=`border-top-color: #${item.color}; border-top-width: 10px;border-top-style: solid;
   width: 200px; height: 160px; margin: 5px;`;
 
@@ -147,9 +147,16 @@ function CreateItem(j, item) {
   
 
 
-  if (item.r == 1) {
+  if (item.r == 1) {     
+      var title = document.createAttribute("title");
+      title.value =  "Item rotado";
+
+
       var img = document.createElement('div');
       img.className = "imgRotated";
+
+      img.setAttributeNode(title);
+
       iDiv3.appendChild(img);
   }
 

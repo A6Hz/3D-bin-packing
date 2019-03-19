@@ -173,10 +173,15 @@ function Volumendelcontenedordisponibleovacio(){
 function Volumendelcontenedorusableaproximado(){
   var detalle = "";
   for(var i = 0; i <Boxes.box.length; i++){
+    //var vol_cont = (Boxes.box[i].d * Boxes.box[i].h * Boxes.box[i].w);
 
-    var vol_cont = (Boxes.box[i].d * Boxes.box[i].h * Boxes.box[i].w);
+    if(/20 pies/.test(Boxes.box[i].name)){
+      detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> 30 m<sup>3</sup>.</p>`
+    }
+    if(/40 pies/.test(Boxes.box[i].name)){
+      detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> 65 m<sup>3</sup>.</p>`
+    }
   
-    detalle += `<p class="pl-3"> <span class="font-weight-bold"> ${Boxes.box[i].name}:</span> ${ conversor.cm3_a_m3(vol_cont - 5276000) } m<sup>3</sup>.</p>`
   }
 
   $("#Volumendelcontenedorusableaproximado").html(detalle);
