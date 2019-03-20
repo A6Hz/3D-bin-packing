@@ -530,17 +530,29 @@ export default class mercancia {
 
     // mostrar modal cargando 
     Swal.fire({
-      html: `
-        <div class="animated pulse infinite cargando-img "></div>
-        <span class="d-block pt-3">Cargando...</span>
-      `,
-      showConfirmButton: false,
+      type: "warning",
+      title: "Advertencia",
+      text: "El tiempo de procesado dependerá de los recursos de su computador.",
+      showConfirmButton: true,
+      confirmButtonText: "Aceptar",
       allowEscapeKey: false,
       allowOutsideClick: false,
-     
+    }).then(() => {
 
+      this.initProceso()
+      
+      
     });
 
+
+
+
+      
+
+
+  }
+
+  initProceso(){
 
 
 
@@ -659,9 +671,6 @@ export default class mercancia {
 
     
     
-      
-
-
   }
 
 

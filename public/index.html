@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/main.css">
-  
+
   <link rel="stylesheet" href="./css/flickity.min.css">
   <link rel="stylesheet" href="./css/accordion.min.css">
   <link rel="stylesheet" href="./css/animate.min.css">
@@ -368,45 +368,47 @@
               <div class="card-body">
                 <div class="row text-white">
                   <div class="col-sm-12 col-md-6">
-                    
 
-                    <h3 class="text-white"> <span class="font-weight-bold">Máximos</span> permitidos a cargar en el contenedor</h3>                    
+
+                    <h3 class="text-white"> <span class="font-weight-bold">Máximos</span> permitidos a cargar en el
+                      contenedor</h3>
 
                     <table class="table table-bordered">
-                        <tbody>
-                          <tr>
-                            <th>Peso</th>
-                            <td id="Pesomaximopermitidoalcargarenelcontenedor"></td>
-                          </tr>
-                          <tr>
-                            <th>Volumen</th>
-                            <td id="Volumendelcontenedordisponibleovacio"></td>
-                          </tr>
-                          <tr>
-                            <th>Volumen usable estimado</th>
-                            <td id="Volumendelcontenedorusableaproximado"></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <tbody>
+                        <tr>
+                          <th>Peso</th>
+                          <td id="Pesomaximopermitidoalcargarenelcontenedor"></td>
+                        </tr>
+                        <tr>
+                          <th>Volumen</th>
+                          <td id="Volumendelcontenedordisponibleovacio"></td>
+                        </tr>
+                        <tr>
+                          <th>Volumen usable estimado</th>
+                          <td id="Volumendelcontenedorusableaproximado"></td>
+                        </tr>
+                      </tbody>
+                    </table>
 
 
                   </div>
                   <div class="colsm-12 col-md-6">
-                      
-                      <h3 class="text-white">Espacios <span class="text-white font-weight-bold">aún</span> disponible para cargar</h3>
-                    
-                      <table class="table table-bordered">
-                        <tbody>
-                          <tr>
-                            <th>Peso</th>
-                            <td id="Pesodisponibleenelcontenedor"></td>
-                          </tr>
-                          <tr>
-                            <th>Volumen aproximado</th>
-                            <td id="Volumendelcontenedordisponible"></td>
-                          </tr>
-                        </tbody>
-                      </table>
+
+                    <h3 class="text-white">Espacios <span class="text-white font-weight-bold">aún</span> disponible para
+                      cargar</h3>
+
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th>Peso</th>
+                          <td id="Pesodisponibleenelcontenedor"></td>
+                        </tr>
+                        <tr>
+                          <th>Volumen aproximado</th>
+                          <td id="Volumendelcontenedordisponible"></td>
+                        </tr>
+                      </tbody>
+                    </table>
 
                   </div>
                 </div>
@@ -424,6 +426,39 @@
       </divv>
 
       <!-- /resumen -->
+
+
+
+
+      <!-- contenedores -->
+      <div class="col-sm-12 mt-5">
+        <h4>
+          Contenedores
+          <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top" title="
+                <div class='text-left'>
+                  <p class='font-weight-bold'>Lista de contenedores totales usados por su mercancia.</p>
+                  Puede seleccionar uno de ellos para ocultar o mostrar el contenedor en el visor 3D.
+                </div>">
+            ?
+          </span>
+        </h4>
+        <div class="main-carousel" id="containers">
+
+        </div>
+
+
+        <p class="bg-light text-left mt-5">
+          <span class="badge bg-base rounded-circle"> ?</span>
+          Puede <span class="font-weight-bold">seleccionar</span> un contenedor de arriba para ocultar o mostrarlo en el
+          visor 3D.
+        </p>
+
+      </div>
+      <!-- /contenedores-->
+
+
+
+
 
 
       <!-- Simulacion 3D -->
@@ -453,10 +488,10 @@
               <li><br></li>
               <li>
                 <div class="">
-                  <button type="button" class="btn btn-sm btn-block "    onclick="zoomModel( 5 )"  >
-                    <svg style="width: 20px" title="Alejar"  aria-hidden="true"
-                      focusable="false" data-prefix="fas" data-icon="search-plus " role="img"
-                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="">
+                  <button type="button" class="btn btn-sm btn-block " onclick="zoomModel( 5 )">
+                    <svg style="width: 20px" title="Alejar" aria-hidden="true" focusable="false" data-prefix="fas"
+                      data-icon="search-plus " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="">
                       <path fill="currentColor"
                         d="M304 192v32c0 6.6-5.4 12-12 12h-56v56c0 6.6-5.4 12-12 12h-32c-6.6 0-12-5.4-12-12v-56h-56c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h56v-56c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v56h56c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"
                         class=""></path>
@@ -466,10 +501,10 @@
               </li>
               <li>
                 <div class="">
-                  <button type="button" class="btn btn-sm btn-block "  onclick="zoomModel( -5 )"  >
-                    <svg style="width: 20px" title="Acercar"  aria-hidden="true"
-                      focusable="false" data-prefix="fas" data-icon="search-minus" role="img"
-                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="">
+                  <button type="button" class="btn btn-sm btn-block " onclick="zoomModel( -5 )">
+                    <svg style="width: 20px" title="Acercar" aria-hidden="true" focusable="false" data-prefix="fas"
+                      data-icon="search-minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="">
                       <path fill="currentColor"
                         d="M304 192v32c0 6.6-5.4 12-12 12H124c-6.6 0-12-5.4-12-12v-32c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm201 284.7L476.7 505c-9.4 9.4-24.6 9.4-33.9 0L343 405.3c-4.5-4.5-7-10.6-7-17V372c-35.3 27.6-79.7 44-128 44C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208c0 48.3-16.4 92.7-44 128h16.3c6.4 0 12.5 2.5 17 7l99.7 99.7c9.3 9.4 9.3 24.6 0 34zM344 208c0-75.2-60.8-136-136-136S72 132.8 72 208s60.8 136 136 136 136-60.8 136-136z"
                         class=""></path>
@@ -498,7 +533,8 @@
 
           <p class="bg-light text-left">
             <span class="badge bg-base rounded-circle"> ?</span>
-            Puede <span class="font-weight-bold">rotar</span> la vista 3D haciendo click en el centro del contenedor y arrastrando el punto hacia los lados.
+            Puede <span class="font-weight-bold">rotar</span> la vista 3D haciendo click en el centro del contenedor y
+            arrastrando el punto hacia los lados.
           </p>
         </div>
       </div>
@@ -524,41 +560,14 @@
 
         <p class="bg-light text-left mt-5">
           <span class="badge bg-base rounded-circle"> ?</span>
-          Puede <span class="font-weight-bold">seleccionar</span> uno de los bultos/items de arriba haciendo click para ocultar o mostrarlo en el visor 3D. <br>
-          Los <span class="font-weight-bold">colores</span> en las tarjetas son los definidos en el bult/item en la parte superior.
+          Puede <span class="font-weight-bold">seleccionar</span> uno de los bultos/items de arriba haciendo click para
+          ocultar o mostrarlo en el visor 3D. <br>
+          Los <span class="font-weight-bold">colores</span> en las tarjetas son los definidos en el bult/item en la
+          parte superior.
         </p>
 
 
       </div>
-
-
-      <!-- contenedores -->
-      <div class="col-sm-12 mt-5">
-        <h4>
-          Contenedores
-          <span class="badge bg-base rounded-circle" data-toggle="tooltip" data-html="true" data-placement="top" title="
-                <div class='text-left'>
-                  <p class='font-weight-bold'>Lista de contenedores totales usados por su mercancia.</p>
-                  Puede seleccionar uno de ellos para ocultar o mostrar el contenedor en el visor 3D.
-                </div>">
-            ?
-          </span>
-        </h4>
-        <div class="main-carousel" id="containers">
-
-        </div>
-
-
-        <p class="bg-light text-left mt-5">
-          <span class="badge bg-base rounded-circle"> ?</span>
-          Puede <span class="font-weight-bold">seleccionar</span> un contenedor de arriba para ocultar o mostrarlo en el visor 3D.
-        </p>
-
-      </div>
-      <!-- /contenedores-->
-
-
-
 
 
 
