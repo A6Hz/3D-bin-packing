@@ -391,7 +391,7 @@ export default class mercancia {
             <div class="float-right p-3">
               <button type="button" class="btn btn-outline-info btn" onclick = "procesar.copiar('${objeto.id}')" >Copiar</button>
               <button type="button" class="btn btn-outline-primary btn" onclick ="procesar.editar('${objeto.id}')" >Editar</button>
-              <button type="button" class="btn btn-outline-secondary btn" onclick = "procesar.eliminar('${objeto.id}')">Eliminar</button>
+              <button type="button" class="btn btn-outline-secondary btn" onclick = "procesar.preEliminar('${objeto.id}')">Eliminar</button>
             </div>
           </div>
         </div>  
@@ -423,6 +423,25 @@ export default class mercancia {
 
 
 
+
+  preEliminar(id){
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "Se eliminarán estos datos",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.value) {
+
+        this.eliminar(id);
+        
+      }
+    })
+  }
 
 
   eliminar(id) {
@@ -478,6 +497,14 @@ export default class mercancia {
   }
 
   copiar(id) {
+
+    Swal.fire({
+      type: 'info',
+      title: 'Copiar datos',
+      text: 'Los valores para su edición fueron agregados en el panel lateral.',
+      
+    })
+
     this.items.map((v, k) => {
       if (v.id == id) {
         this.asignar_valores(v);
