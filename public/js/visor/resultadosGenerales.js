@@ -39,10 +39,10 @@ function Cantidad_cont_resumen(){
 
   // 
   if(cont20 != 0){
-    Cantidad_de_contenedor_tipo +=  "<p>" + cont20 + " x Contendeor de 20 pies. </p>";
+    Cantidad_de_contenedor_tipo +=  "<p>" + cont20 + " x Contenedor de 20 pies. </p>";
   }
   if(cont40 != 0){
-    Cantidad_de_contenedor_tipo +=  "<p>" + cont40 + " x Contendeor de 40 pies. </p>" ;
+    Cantidad_de_contenedor_tipo +=  "<p>" + cont40 + " x Contenedor de 40 pies. </p>" ;
   }
 
   
